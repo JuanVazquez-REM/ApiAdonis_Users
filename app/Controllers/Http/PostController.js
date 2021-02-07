@@ -34,6 +34,55 @@ class PostController {
             Post: newpost
         })
     }
+
+    //EDITAR MIS POSTS
+    async editar_post ({response, request,auth}){
+        const input = request.all();
+
+        const validation = await validateAll(input, {
+            'id': 'required'
+        });
+
+        if(validation.fails()){
+            return validation.messages()
+        }
+        if(await Post.query().where('id',request.input('id')).where('user_id',auth.user.id).update(input)){
+            return response.status(200).json({
+                status: "true",
+                message: "Post actualizado correctamente"
+            })
+        }
+
+        return response.status(406).json({
+            status: "false",
+            message: "El Post no fue actualizado"
+        })
+        
+    }
+
+    //EliMINAR MIS POSTS
+    async eliminar_post ({response, request,auth }){
+        const input = request.all();
+
+        const validation = await validateAll(input, {
+            'id': 'required'
+        });
+
+        if(validation.fails()){
+            return validation.messages()
+        }
+        if(await post.query().where('id',request.input('id')).where('user_id',auth.user.id).delete()){
+            return response.status(200).json({
+                status: "true",
+                message: "Post eliminado correctamente"
+            })
+        }
+
+        return response.status(406).json({
+            status: "false",
+            message: "El Post no fue eliminado"
+        })
+    }
 }
 
 module.exports = PostController

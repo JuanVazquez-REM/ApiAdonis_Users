@@ -32,8 +32,15 @@ Route.group(() => {
   Route.post('/posts','PostController.todos_posts') //mostrar todos los posts
   Route.post('/myposts','PostController.mis_posts') //mostrar mis posts
   Route.post('/nuevo/post','PostController.nuevo_post') //agregar nuevo post
+  //Modificadores
+  Route.put('/my/post','PostController.editar_post') 
+  Route.delete('/eliminar/post','PostController.eliminar_post') 
 
   //COMMENTS
   Route.post('/comments/post','CommentController.comments_post')
   Route.post('/nuevo/comment','CommentController.nuevo_comment')
+  //Modificadores
+  Route.put('/my/comment','CommentController.editar_comment')
+  Route.delete('/delete/comment','CommentController.eliminar_comment')
+
 }).middleware(['auth'])
