@@ -34,7 +34,7 @@ Route.group(() => {
   Route.post('/nuevo/post','PostController.nuevo_post') //agregar nuevo post
   //Modificadores
   Route.put('/my/post','PostController.editar_post') 
-  Route.delete('/eliminar/post','PostController.eliminar_post') 
+  Route.delete('/delete/post','PostController.eliminar_post') 
 
   //COMMENTS
   Route.post('/comments/post','CommentController.comments_post')

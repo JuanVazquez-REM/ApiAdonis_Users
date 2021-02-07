@@ -71,7 +71,7 @@ class PostController {
         if(validation.fails()){
             return validation.messages()
         }
-        if(await post.query().where('id',request.input('id')).where('user_id',auth.user.id).delete()){
+        if(await Post.query().where('id',request.input('id')).where('user_id',auth.user.id).delete()){
             return response.status(200).json({
                 status: "true",
                 message: "Post eliminado correctamente"
